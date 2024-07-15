@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Interativa</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .scare-image {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Você gostou do nosso site?</p>
+        <div class="buttons">
+            <button id="yes">Sim</button>
+            <button id="no">Não</button>
+        </div>
+        <img id="scare-image" class="scare-image" src="https://img.freepik.com/fotos-gratis/personagem-assustador-de-vista-frontal-posando_23-2150701112.jpg" alt="Susto">
+        <audio id="scare-sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+        const scareImage = document.getElementById('scare-image');
+        const scareSound = document.getElementById('scare-sound');
+
+        noButton.addEventListener('mouseover', function() {
+            const randomX = Math.floor(Math.random() * window.innerWidth) - noButton.clientWidth;
+            const randomY = Math.floor(Math.random() * window.innerHeight) - noButton.clientHeight;
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX < 0 ? 0 : randomX}px`;
+            noButton.style.top = `${randomY < 0 ? 0 : randomY}px`;
+        });
+
+        yesButton.addEventListener('click', function() {
+            scareImage.style.display = 'block';
+            scareSound.play();
+            setTimeout(() => {
+                scareImage.style.display = 'none';
+                window.location.href = 'https://www.youtube.com/watch?v=19vJ1VfkRK4';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
